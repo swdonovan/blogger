@@ -1,10 +1,12 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:destroy, :edit, :show, :update]
   before_action :get_all_articles, only: [:index]
+  before_action :new_comment, only: [:show]
   def index
   end
 
   def show
+    @comment.article_id = @article.id
   end
 
   def new
@@ -54,4 +56,9 @@ class ArticlesController < ApplicationController
   def get_all_articles
     @articles = Article.all
   end
+
+  def new_comment
+    @comment = Comment.new
+  end
+
 end
